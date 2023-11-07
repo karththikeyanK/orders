@@ -1,0 +1,13 @@
+spring:
+    datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost/orders
+      username: karthik
+      password: example-password
+    jpa:
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.MySQL8Dialect
