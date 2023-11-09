@@ -2,7 +2,6 @@ package com.postgresql.order.request;
 
 public class OrderRequest {
 
-    private Long orderId;
     private Long itemId;
     private Long userId;
 
@@ -20,7 +19,4 @@ public class OrderRequest {
         return quantity;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
 }

@@ -4,9 +4,7 @@ public class CompanyRequest {
     private String companyName;
     private Long companyRegNo;
     private String companyAddress;
-
     private Long organizationId;
-
 
     public String getCompanyName() {
         return companyName;
