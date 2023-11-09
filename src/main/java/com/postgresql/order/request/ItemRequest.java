@@ -17,4 +17,5 @@ public class ItemRequest {
     public Integer getQuantity() {
         return quantity;
     }
+
 }

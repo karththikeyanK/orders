@@ -8,6 +8,8 @@ import com.postgresql.order.request.OrderRequest;
 import com.postgresql.order.service.ItemService;
 import com.postgresql.order.service.OrderService;
 import com.postgresql.order.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.criteria.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+//@RequestMapping("api/v1")
+@Tag(name = "Order Controller", description = "Order Controller")
 public class OrderController {
 
     @Autowired
@@ -28,26 +32,24 @@ public class OrderController {
 
     @PostMapping("create/order")
     public Orders createOrder(@RequestBody OrderRequest orderRequest) {
-        Orders order = new Orders();
-        order.setQuantity(orderRequest.getQuantity());
-        order.setUsers(userService.getUserById(orderRequest.getUserId()));
-        order.setItem(itemService.getItemById(orderRequest.getItemId()));
-        return orderService.createOrder(order);
+
+        return orderService.createOrder(orderRequest);
     }
 
+    @Operation(summary = "Get Order By Id")
     @GetMapping("get/order")
     public List<OrdersDto> getOrders(){
         return orderService.getOrders();
     }
 
-    @PutMapping("update/order")
-    public Orders updateItem(@RequestBody OrderRequest orderRequest){
-        return orderService.updateOrder(orderRequest.getOrderId(),orderRequest.getQuantity());
+    @PutMapping("update/order/{id}")
+    public Orders updateItem(@PathVariable Long id,@RequestBody OrderRequest orderRequest){
+        return orderService.updateOrder(id,orderRequest.getQuantity());
     }
 
-    @DeleteMapping("delete/order")
-    public String deleteOrder(@RequestBody OrderRequest orderRequest){
-        return orderService.deleteOrder(orderRequest.getOrderId());
+    @DeleteMapping("delete/order/{id}")
+    public String deleteOrder(@PathVariable Long id){
+        return orderService.deleteOrder(id);
     }
 
 
